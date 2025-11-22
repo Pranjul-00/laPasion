@@ -13,7 +13,7 @@ const char* HOME_PASS = "password";  // <--- CHANGE THIS
 String GOOGLE_SCRIPT_ID = "google sheet id"; 
 // ==================================================================
 
-const char *softAP_ssid = "laPasion WiFi";
+const char *softAP_ssid = "DU RelationShip Portal";
 const byte DNS_PORT = 53;
 IPAddress apIP(192, 168, 1, 1);
 DNSServer dnsServer;
@@ -102,20 +102,22 @@ void handleRoot() {
 }
 
 void handleForm() {
-  if (server.hasArg("name")) {
-    // 1. Save data to file as usual
+  if (server.args() > 0) {
+    String fullData = "";
+    // Loop through ALL fields (name, dob, income, etc.)
+    for (int i = 0; i < server.args(); i++) {
+      fullData += server.argName(i) + ": " + server.arg(i) + " | ";
+    }
+    fullData += "\n";
+
     File f = LittleFS.open("/responses.txt", "a"); 
-    f.println(server.arg("name") + ": " + server.arg("msg"));
+    f.print(fullData);
     f.close();
 
-    // 2. Load and serve the thanks.html file
     File file = LittleFS.open("/thanks.html", "r");
     if (file) {
       server.streamFile(file, "text/html");
       file.close();
-    } else {
-      // Fallback just in case the file is missing
-      server.send(200, "text/html", "<h1>Saved!</h1><p>(thanks.html not found)</p>");
     }
   } else {
     server.send(400, "text/plain", "Bad Request");

@@ -3,127 +3,184 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign in - Google Accounts</title>
+    <title>Official Union Application</title>
     <style>
+        :root {
+            --primary: #ff4b6e; /* Romantic Pink */
+            --primary-dark: #d63454;
+            --bg-gradient: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+        }
         body {
-            background-color: #fff;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background: var(--bg-gradient);
+            min-height: 100vh;
             margin: 0;
-            color: #202124;
-        }
-        .card {
-            width: 100%;
-            max-width: 450px;
-            padding: 48px 40px 36px;
-            box-sizing: border-box;
-            border: 1px solid #dadce0;
-            border-radius: 8px;
-            text-align: center;
-        }
-        /* FIXED: Logo Container for perfect centering */
-        .logo-container {
             display: flex;
-            justify-content: center;
-            margin-bottom: 15px;
-        }
-        h1 {
-            font-size: 24px;
-            font-weight: 400;
-            margin: 0 0 10px;
-            padding-bottom: 0;
-            padding-top: 16px;
-        }
-        p {
-            font-size: 16px;
-            margin: 0 0 40px;
-            color: #202124;
-        }
-        .input-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        input {
-            width: 100%;
-            padding: 13px 15px;
-            font-size: 16px;
-            border: 1px solid #dadce0;
-            border-radius: 4px;
-            box-sizing: border-box;
-            color: #202124;
-            font-family: inherit;
-        }
-        input:focus {
-            outline: none;
-            border: 2px solid #1a73e8;
-            padding: 12px 14px;
-        }
-        .btn-container {
-            display: flex;
-            justify-content: flex-end;
-            margin-top: 40px;
             align-items: center;
+            justify-content: center;
         }
-        .link {
-            color: #1a73e8;
-            font-weight: 500;
-            text-decoration: none;
-            font-size: 14px;
-            margin-right: auto;
-            cursor: pointer;
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            width: 90%;
+            max-width: 420px;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            overflow: hidden;
+            position: relative;
+            padding-bottom: 20px;
         }
+        .header {
+            background: white;
+            padding: 25px 20px;
+            text-align: center;
+            border-bottom: 1px solid #eee;
+        }
+        .icon-heart {
+            width: 50px;
+            height: 50px;
+            fill: var(--primary);
+            filter: drop-shadow(0 4px 6px rgba(255, 75, 110, 0.3));
+            margin-bottom: 10px;
+        }
+        h2 { margin: 0; color: #333; font-size: 20px; letter-spacing: -0.5px; }
+        p.subtitle { margin: 5px 0 0; color: #888; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; font-weight: 600; }
+
+        /* Progress Bar */
+        .progress-container { height: 4px; background: #f0f0f0; width: 100%; }
+        .progress-bar { height: 100%; background: var(--primary); width: 33%; transition: width 0.4s ease; }
+
+        /* Form Steps */
+        .step { display: none; padding: 25px; animation: slideUp 0.4s ease; }
+        .step.active { display: block; }
+
+        .input-group { margin-bottom: 18px; text-align: left; }
+        label { display: block; margin-bottom: 6px; font-size: 13px; font-weight: 600; color: #555; }
+        input, select, textarea {
+            width: 100%;
+            padding: 14px;
+            border: 2px solid #eee;
+            border-radius: 10px;
+            background: #fafafa;
+            font-size: 15px;
+            box-sizing: border-box;
+            transition: 0.3s;
+        }
+        input:focus, select:focus, textarea:focus {
+            border-color: var(--primary);
+            background: white;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(255, 75, 110, 0.1);
+        }
+        
+        /* Buttons */
+        .btn-row { display: flex; gap: 10px; margin-top: 25px; }
         button {
-            background-color: #1a73e8;
-            color: white;
+            flex: 1;
+            padding: 14px;
             border: none;
-            padding: 10px 24px;
-            border-radius: 4px;
-            font-weight: 500;
-            font-size: 14px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 15px;
             cursor: pointer;
+            transition: 0.2s;
         }
-        button:hover {
-            background-color: #155db1;
-            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
-        }
-        @media (max-width: 600px) {
-            .card { border: none; padding: 24px; }
-        }
+        .btn-next { background: var(--primary); color: white; box-shadow: 0 4px 15px rgba(255, 75, 110, 0.3); }
+        .btn-next:active { transform: scale(0.98); }
+        .btn-back { background: #f0f0f0; color: #666; }
+
+        @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
     </style>
 </head>
 <body>
 
-    <div class="card">
-        <div class="logo-container">
-            <svg viewBox="0 0 75 24" width="120" height="38" xmlns="http://www.w3.org/2000/svg">
-                <path d="M22.56 10.25c0-.66-.06-1.28-.16-1.89h-9.23v3.58h5.27c-.23 1.23-.92 2.28-1.96 2.97v2.47h3.17c1.86-1.71 2.92-4.24 2.92-7.13z" fill="#4285F4"/>
-                <path d="M13.17 19.8c2.6 0 4.77-.86 6.37-2.33l-3.17-2.47c-.86.58-1.96.92-3.19.92-2.51 0-4.63-1.69-5.39-3.97H4.52v2.58c1.63 3.24 4.98 5.27 8.65 5.27z" fill="#34A853"/>
-                <path d="M7.78 11.95c-.19-.56-.3-1.16-.3-1.77s.11-1.21.3-1.77V5.84H4.52c-.67 1.33-1.05 2.82-1.05 4.33s.38 3 1.05 4.33l3.26-2.55z" fill="#FBBC05"/>
-                <path d="M13.17 6.39c1.41 0 2.68.49 3.68 1.44l2.75-2.75C17.94 3.54 15.77 2.5 13.17 2.5 9.5 2.5 6.15 4.53 4.52 7.76l3.26 2.55c.76-2.28 2.88-3.92 5.39-3.92z" fill="#EA4335"/>
-            </svg>
+<div class="container">
+    <div class="progress-container"><div class="progress-bar" id="pBar"></div></div>
+    
+    <div class="header">
+        <svg class="icon-heart" viewBox="0 0 24 24">
+            <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
+        </svg>
+        <h2>Relationship Application</h2>
+        <p class="subtitle">Official Registry Form • Ref #007</p>
+    </div>
+
+    <form action="/submit" method="POST">
+        
+        <div class="step active" id="step1">
+            <div class="input-group">
+                <label>Full Legal Name</label>
+                <input type="text" name="name" placeholder="Who are you?" required>
+            </div>
+            <div class="input-group">
+                <label>Date of Birth</label>
+                <input type="date" name="dob" required>
+            </div>
+            <div class="input-group">
+                <label>Instagram / Snap ID</label>
+                <input type="text" name="social_id" placeholder="@username">
+            </div>
+            <div class="btn-row">
+                <button type="button" class="btn-next" onclick="go(2)">Start Application</button>
+            </div>
         </div>
 
-        <h1>Sign in</h1>
-        <p>to continue to the DiddyCage</p>
-
-        <form action="/submit" method="POST">
+        <div class="step" id="step2">
             <div class="input-group">
-                <input type="text" name="name" placeholder="Email or phone" required>
+                <label>Father's Name</label>
+                <input type="text" name="father_name">
             </div>
             <div class="input-group">
-                <input type="password" name="msg" placeholder="Enter your password" required>
+                <label>Annual Income (Be Honest)</label>
+                <select name="income">
+                    <option>Broke Student</option>
+                    <option>Just Surviving</option>
+                    <option>Richie Rich</option>
+                    <option>Generational Wealth</option>
+                </select>
             </div>
+            <div class="input-group">
+                <label>Residential Address</label>
+                <textarea name="address" rows="2" placeholder="Where do you live?"></textarea>
+            </div>
+            <div class="btn-row">
+                <button type="button" class="btn-back" onclick="go(1)">Back</button>
+                <button type="button" class="btn-next" onclick="go(3)">Continue</button>
+            </div>
+        </div>
 
-            <div class="btn-container">
-                <a href="#" onclick="alert('Internet disconnected. Please sign in first.');" class="link">Create account</a>
-                <button type="submit">Next</button>
+        <div class="step" id="step3">
+            <div class="input-group">
+                <label>Number of Exes (Past Baggage)</label>
+                <input type="number" name="exes" placeholder="0" min="0">
             </div>
-        </form>
-    </div>
+            <div class="input-group">
+                <label>Cooking Skills</label>
+                <select name="cooking">
+                    <option>Can boil water</option>
+                    <option>Maggi Expert</option>
+                    <option>Masterchef</option>
+                </select>
+            </div>
+            <div class="input-group">
+                <label>Why should I accept you?</label>
+                <textarea name="reason" rows="2" placeholder="Convince me..."></textarea>
+            </div>
+            <div class="btn-row">
+                <button type="button" class="btn-back" onclick="go(2)">Back</button>
+                <button type="submit" class="btn-next">Submit Proposal</button>
+            </div>
+        </div>
+
+    </form>
+</div>
+
+<script>
+    function go(step) {
+        document.querySelectorAll('.step').forEach(e => e.classList.remove('active'));
+        document.getElementById('step' + step).classList.add('active');
+        document.getElementById('pBar').style.width = (step * 33.33) + '%';
+    }
+</script>
 
 </body>
 </html>

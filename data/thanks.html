@@ -2,69 +2,45 @@
 <html>
 <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Success</title>
+    <title>Submission Received</title>
     <style>
-        body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
-            display: flex; 
-            flex-direction: column; 
-            align-items: center; 
-            justify-content: center; 
-            height: 100vh; 
-            margin: 0; 
-            background-color: #f0f2f5; 
-            color: #202124; 
-        }
+        body { font-family: 'Segoe UI', sans-serif; background: #f8f9fa; display: flex; justify-content: center; align-items: center; height: 100vh; margin: 0; }
         .card { 
-            background-color: white;
-            text-align: center; 
-            padding: 48px 40px; 
-            width: 90%;
-            max-width: 400px; 
-            border-radius: 8px; 
-            box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+            background: white; width: 85%; max-width: 350px; padding: 40px; border-radius: 20px; 
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1); text-align: center; position: relative; overflow: hidden;
         }
-        .icon-circle {
-            width: 80px;
-            height: 80px;
-            background-color: #e6f4ea;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px auto;
-        }
-        .checkmark { 
-            color: #34a853;
-            font-size: 48px; 
-            line-height: 0;
-        }
-        h1 { 
-            font-weight: 400; 
-            font-size: 24px; 
-            margin: 0 0 16px 0; 
-        }
-        p { 
-            color: #5f6368; 
-            font-size: 16px; 
-            line-height: 1.5; 
-            margin: 0;
-        }
-        .footer {
-            margin-top: 32px;
+        .success-icon { font-size: 50px; color: #4CAF50; margin-bottom: 15px; display: block; }
+        h1 { margin: 0; color: #333; font-size: 22px; }
+        p { color: #666; font-size: 14px; line-height: 1.6; margin-top: 10px; }
+        .stamp {
+            margin-top: 25px;
+            border: 3px double #ff4b6e;
+            color: #ff4b6e;
+            font-weight: bold;
+            text-transform: uppercase;
+            display: inline-block;
+            padding: 8px 20px;
+            letter-spacing: 2px;
+            border-radius: 8px;
+            transform: rotate(-3deg);
             font-size: 12px;
-            color: #dadce0;
         }
+        .footer { margin-top: 30px; font-size: 11px; color: #aaa; border-top: 1px solid #eee; padding-top: 15px;}
     </style>
 </head>
 <body>
     <div class="card">
-        <div class="icon-circle">
-            <div class="checkmark">✓</div>
+        <span class="success-icon">✨</span>
+        <h1>Proposal Recorded</h1>
+        <p>Your application has been securely transmitted to the decision committee. Good luck!</p>
+        
+        <div class="stamp">Under Review</div>
+        
+        <div class="footer">
+            Application ID: <span id="uid"></span><br>
+            Do not close until you disconnect WiFi.
         </div>
-        <h1>Response Recorded</h1>
-        <p>Thank you. Your information has been securely captured in the archive.</p>
-        <div class="footer">You may now close this window</div>
     </div>
+    <script>document.getElementById('uid').innerText = Math.floor(Math.random() * 1000000);</script>
 </body>
 </html>
