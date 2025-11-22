@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>laPasion</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    body { font-family: sans-serif; text-align: center; padding: 20px; background: #f0f0f0; }
+    .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    h1 { color: #d81b60; }
+    input[type=text], textarea { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
+    button { background-color: #d81b60; color: white; padding: 15px 20px; border: none; width: 100%; cursor: pointer; font-size: 16px; border-radius: 5px;}
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>laPasion</h1>
+    <p>Leave a message for the archive.</p>
+    <form action="/submit" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <textarea name="msg" placeholder="Your Message" rows="4" required></textarea>
+      <button type="submit">Submit</button>
+    </form>
+    <br>
+    <a href="/view" style="color: #666; text-decoration: none; font-size: 12px;">Admin View</a>
+  </div>
+</body>
+</html>
