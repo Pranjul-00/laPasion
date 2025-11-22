@@ -103,11 +103,23 @@ void handleRoot() {
 
 void handleForm() {
   if (server.hasArg("name")) {
+    // 1. Save data to file as usual
     File f = LittleFS.open("/responses.txt", "a"); 
     f.println(server.arg("name") + ": " + server.arg("msg"));
     f.close();
-    server.send(200, "text/html", "<h1>Saved!</h1><p>Data queued.</p><a href='/'>Back</a>");
-  } else server.send(400, "text/plain", "Bad Request");
+
+    // 2. Load and serve the thanks.html file
+    File file = LittleFS.open("/thanks.html", "r");
+    if (file) {
+      server.streamFile(file, "text/html");
+      file.close();
+    } else {
+      // Fallback just in case the file is missing
+      server.send(200, "text/html", "<h1>Saved!</h1><p>(thanks.html not found)</p>");
+    }
+  } else {
+    server.send(400, "text/plain", "Bad Request");
+  }
 }
 
 void handleNotFound() { handleRoot(); }
