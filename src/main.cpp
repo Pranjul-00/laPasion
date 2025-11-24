@@ -1,5 +1,5 @@
 #include <Arduino.h>
-#include <WiFi.h>
+#include <WiFi.h> 
 #include <DNSServer.h>
 #include <WebServer.h>
 #include <LittleFS.h>
@@ -7,10 +7,10 @@
 #include <ArduinoJson.h>
 
 // ================= CONFIGURATION (FILL THESE IN!) =================
-const char* HOME_SSID = "wifi name";      // <--- CHANGE THIS
-const char* HOME_PASS = "password";  // <--- CHANGE THIS
+const char* HOME_SSID = "";      // <--- CHANGE THIS
+const char* HOME_PASS = "";  // <--- CHANGE THIS
 // Paste ONLY the ID part of your Google URL:
-String GOOGLE_SCRIPT_ID = "google sheet id"; 
+String GOOGLE_SCRIPT_ID = ""; 
 // ==================================================================
 
 const char *softAP_ssid = "DU RelationShip Portal";
